@@ -1,31 +1,21 @@
 import React from "react";
+import FilterTag from "./FilterTag";
 
-function Filters(){
+function Filters(props){
+    function handleClick(){
+      props.clearFilters();
+    }
+
     return(
         <div className="filters-section">
         <div className="filters-container">
-          <div className="filter">
-            <p className="filter-name">
-              Frontend
-            </p>
-            <button className="filter-removal"><img src={process.env.PUBLIC_URL + "/images/icon-remove.svg"} alt=""></img></button>
-          </div>
-
-          <div className="filter">
-            <p className="filter-name">
-              CSS
-            </p>
-            <button className="filter-removal"><img src={process.env.PUBLIC_URL + "/images/icon-remove.svg"} alt=""></img></button>
-          </div>
-
-          <div className="filter">
-            <p className="filter-name">
-              JavaScript
-            </p>
-            <button className="filter-removal"><img src={process.env.PUBLIC_URL + "/images/icon-remove.svg"} alt=""></img></button>
-          </div>
+        {props.filters.map((filter, index) => {
+          return (
+            <FilterTag key={index} filterName={filter} removeFilter={props.removeFilter}/>
+          );
+        })}
         </div>
-        <p className="filters-clear">Clear</p>
+        <p className="filters-clear" onClick={handleClick}>Clear</p>
       </div>
     );
 }
