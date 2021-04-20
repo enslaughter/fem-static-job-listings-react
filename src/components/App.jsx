@@ -61,7 +61,7 @@ function App() {
     <div className="App">
       <div className="page-heading"></div>
         { currentFilters.length > 0 && <Filters removeFilter={RemoveFilter} clearFilters={ClearFilters} filters={currentFilters}/> }
-      <div className="listings">
+      <div className="listings" style={currentFilters.length === 0 ? {marginTop: "72px"} : {}}>
         {filteredData.map((listingData, index) => {
           return(
             <Listing key={index} listingData={listingData} filterTags={PopulateTags(listingData)} addFilter={AddFilter} />
